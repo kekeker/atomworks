@@ -16,11 +16,17 @@ def _load_structure_from_path(path: Path, assembly_id: str, parser_args: dict | 
     """Load structure from file path using the CIF parser, merging with STANDARD_PARSER_ARGS."""
     # Merge STANDARD_PARSER_ARGS with parser_args (parser_args takes precedence)
     merged_args = {**STANDARD_PARSER_ARGS, **(parser_args or {})}
-    result_dict = parse(
-        filename=path,
-        build_assembly=(assembly_id,),
-        **merged_args,
-    )
+    if "build_assembly" in merged_args:
+        result_dict = parse(
+            filename=path,
+            **merged_args,
+        )
+    else:
+        result_dict = parse(
+            filename=path,
+            build_assembly=(assembly_id,),
+            **merged_args,
+        )
     return result_dict
 
 
