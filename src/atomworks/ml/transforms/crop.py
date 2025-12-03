@@ -265,7 +265,6 @@ def get_spatial_crop_center(
 
         return can_be_crop_center
 
-    # ... get mask for ligands of interest
     is_at_interface = np.zeros_like(is_query_pn_unit, dtype=bool)
     dists = {}
     for pn_unit_1_iid, pn_unit_2_iid in itertools.combinations(query_pn_unit_iids, 2):
